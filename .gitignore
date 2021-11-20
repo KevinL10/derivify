@@ -1,0 +1,6 @@
+__pycache__/
+
+# Image files
+*.bmp
+*.png
+*.svg
