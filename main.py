@@ -24,23 +24,23 @@ if __name__ == "__main__":
 	with open(svgfile, 'r') as f:
 		curves = f.read()
 
-curves = parse_svg(curves)
+	curves = parse_svg(curves)
 
-t = np.arange(0, 1, 0.001)
+	t = np.arange(0, 1, 0.001)
 
-plt.figure()
-for c in curves:
-	try:
-		plot = plt.plot(bezier_x(c, t), bezier_slope(c, t))
-	except:
-		pass
+	plt.figure()
+	for c in curves:
+		try:
+			plot = plt.plot(bezier_x(c, t), bezier_slope(c, t))
+		except:
+			pass
 
-# Remove frame from matplotlib graph
-ax = plt.gca()
-ax.axis('off')
+	# Remove frame from matplotlib graph
+	ax = plt.gca()
+	ax.axis('off')
 
-plotfile = f'{inputfile}_deriv.png'
-print(f"[+] Plotted derivative graph to {plotfile}")
+	plotfile = f'{inputfile}_deriv.png'
+	print(f"[+] Plotted derivative graph to {plotfile}")
 
-os.remove(svgfile)
-plt.savefig(plotfile)
+	os.remove(svgfile)
+	plt.savefig(plotfile)
