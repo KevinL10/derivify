@@ -35,6 +35,10 @@ for c in curves:
 	except:
 		pass
 
+# Remove frame from matplotlib graph
+ax = plt.gca()
+ax.axis('off')
+
 plotfile = f'{inputfile}_deriv.png'
 print(f"[+] Plotted derivative graph to {plotfile}")
 
