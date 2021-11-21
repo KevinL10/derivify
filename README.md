@@ -5,6 +5,10 @@ Calculates the derivative of a graph from a given image using [potrace](http://p
 `python3 main.py [filename]` produces a derivative graph for the specified file. Currently, only black and white bitmaps (PBM, PGM, PPM, BMP) are supported.
 
 
+![Website Prototype](/examples/Derivify.gif)
+
+Alternatively, you can deploy the flask application with `flask run` in the [website](/website) folder.
+
 **Note**: The graph must be continuous.
 # Examples
 See [examples](/examples).
@@ -17,4 +21,5 @@ See [examples](/examples).
 - [ ] Support PNG and JPG images
 - [ ] Use lines in addition to curves when calculating the derivative
 - [ ] Average out the values at every x-coordinate
-- [ ] Create a simple website that runs Derivify on uploaded images
+- [x] Create a simple website that runs Derivify on uploaded images
+- [ ] Host the flask app
