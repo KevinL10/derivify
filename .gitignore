@@ -4,6 +4,6 @@ __pycache__/
 *.bmp
 *.png
 *.svg
+*.jpg
 
-!examples/*.bmp
-!examples/*.png
+!examples/
