@@ -2,7 +2,7 @@
 Calculates the derivative of a graph from a given image using [potrace](http://potrace.sourceforge.net/) and Bezier curves.
 
 # Usage
-`python3 main.py [filename]` produces a derivative graph for the specified file. Currently, only black and white bitmaps (PBM, PGM, PPM, BMP) are supported.
+`python3 main.py [filename]` produces a derivative graph for the specified file. Currently, only black and white images (PNG, JPG, BMP) are supported.
 
 
 ![Website Prototype](/examples/Derivify.gif)
@@ -18,8 +18,7 @@ See [examples](/examples).
 
 # Todo
 - [ ] Make the svg parser more robust
-- [ ] Support PNG and JPG images
-- [ ] Use lines in addition to curves when calculating the derivative
-- [ ] Average out the values at every x-coordinate
+- [x] Support PNG and JPG images
+- [ ] Smooth out the resulting derivative graph
 - [x] Create a simple website that runs Derivify on uploaded images
 - [ ] Host the flask app
