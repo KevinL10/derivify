@@ -1,3 +1,4 @@
+from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 import sys, os
@@ -10,18 +11,21 @@ if __name__ == "__main__":
 		print("Usage: python3 main.py [filename]")
 		sys.exit()
 
-	nonce = os.urandom(8).hex()
-	inputfile = sys.argv[1].split('.')[0]
-	svgfile = f'{inputfile}-{nonce}.svg'
+	file_name = sys.argv[1].split('.')[0]
+	svg_path = f'{file_name}.svg'
+	bmp_path = f'{file_name}.bmp'
 
-	res = os.system(f'potrace -b svg -a 200 {sys.argv[1]} -o {svgfile}')
+	# Save the image as a .bmp file
+	Image.open(sys.argv[1]).save(bmp_path)
+
+	res = os.system(f'potrace -b svg -a 200 {bmp_path} -o {svg_path}')
 	if res != 0:
 		print("Specify a valid filename")
 		sys.exit()
 
 	print("[+] Converted to an svg file")
 
-	with open(svgfile, 'r') as f:
+	with open(svg_path, 'r') as f:
 		curves = f.read()
 
 	curves = parse_svg(curves)
@@ -39,8 +43,10 @@ if __name__ == "__main__":
 	ax = plt.gca()
 	ax.axis('off')
 
-	plotfile = f'{inputfile}_deriv.png'
+	plotfile = f'{file_name}_deriv.png'
+	plt.savefig(plotfile)
 	print(f"[+] Plotted derivative graph to {plotfile}")
 
-	os.remove(svgfile)
-	plt.savefig(plotfile)
+	# Clean up .bmp and .svg files
+	os.remove(svg_path)
+	os.remove(bmp_path)
