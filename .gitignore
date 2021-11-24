@@ -1,9 +1,11 @@
 __pycache__/
+website/graphs/
 
 # Image files
 *.bmp
 *.png
 *.svg
 *.jpg
+
 
 !examples/

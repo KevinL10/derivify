@@ -1,3 +1,4 @@
+from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 import sys, os
@@ -6,13 +7,18 @@ from utils import *
 np.seterr(divide='ignore', invalid='ignore')
 
 def deriv(input_file, output_file):
-	svgfile = f'{output_file}.svg'
+	svg_path = f'{output_file}.svg'
+	bmp_path = f'{output_file}.bmp'
 
-	res = os.system(f'potrace -b svg -a 200 {input_file} -o {svgfile}')
+	# Save the image as a .bmp file
+	Image.open(input_file).save(bmp_path)
+
+
+	res = os.system(f'potrace -b svg -a 200 {bmp_path} -o {svg_path}')
 	if res != 0:
 		return
 
-	with open(svgfile, 'r') as f:
+	with open(svg_path, 'r') as f:
 		curves = f.read()
 
 	curves = parse_svg(curves)
@@ -29,6 +35,8 @@ def deriv(input_file, output_file):
 	# Remove frame from matplotlib graph
 	ax = plt.gca()
 	ax.axis('off')
-
-	os.remove(svgfile)
 	plt.savefig(output_file)
+
+	# Clean up .bmp and .svg files
+	os.remove(svg_path)
+	os.remove(bmp_path)
