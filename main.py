@@ -12,8 +12,8 @@ if __name__ == "__main__":
 		sys.exit()
 
 	file_name = sys.argv[1].split('.')[0]
-	svg_path = f'{file_name}.svg'
-	bmp_path = f'{file_name}.bmp'
+	svg_path = f'{sys.argv[1]}.svg'
+	bmp_path = f'{sys.argv[1]}.bmp'
 
 	# Save the image as a .bmp file
 	Image.open(sys.argv[1]).save(bmp_path)
