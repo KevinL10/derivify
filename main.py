@@ -6,24 +6,17 @@ from utils import *
 
 np.seterr(divide='ignore', invalid='ignore')
 
-if __name__ == "__main__":
-	if len(sys.argv) != 2:
-		print("Usage: python3 main.py [filename]")
-		sys.exit()
-
-	file_name = sys.argv[1].split('.')[0]
-	svg_path = f'{sys.argv[1]}.svg'
-	bmp_path = f'{sys.argv[1]}.bmp'
+def deriv(input_file, output_file):
+	svg_path = f'{output_file}.svg'
+	bmp_path = f'{output_file}.bmp'
 
 	# Save the image as a .bmp file
-	Image.open(sys.argv[1]).save(bmp_path)
+	Image.open(input_file).save(bmp_path)
+
 
 	res = os.system(f'potrace -b svg -a 200 {bmp_path} -o {svg_path}')
 	if res != 0:
-		print("Specify a valid filename")
-		sys.exit()
-
-	print("[+] Converted to an svg file")
+		return
 
 	with open(svg_path, 'r') as f:
 		curves = f.read()
@@ -36,16 +29,13 @@ if __name__ == "__main__":
 	for c in curves:
 		try:
 			plot = plt.plot(bezier_x(c, t), bezier_slope(c, t))
-		except ValueError:
+		except:
 			pass
 
 	# Remove frame from matplotlib graph
 	ax = plt.gca()
 	ax.axis('off')
-
-	plotfile = f'{file_name}_deriv.png'
-	plt.savefig(plotfile)
-	print(f"[+] Plotted derivative graph to {plotfile}")
+	plt.savefig(output_file)
 
 	# Clean up .bmp and .svg files
 	os.remove(svg_path)

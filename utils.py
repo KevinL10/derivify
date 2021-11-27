@@ -45,6 +45,6 @@ def bezier_slope(c, t):
 
 	# Unless it's an asymptote, you don't want giant spikes in the middle of your graph ...
 	if max(res) - min(res) > 20:
-		raise ValueError
+		return
 
 	return res
