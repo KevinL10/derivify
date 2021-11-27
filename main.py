@@ -36,7 +36,7 @@ if __name__ == "__main__":
 	for c in curves:
 		try:
 			plot = plt.plot(bezier_x(c, t), bezier_slope(c, t))
-		except:
+		except ValueError:
 			pass
 
 	# Remove frame from matplotlib graph
