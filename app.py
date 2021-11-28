@@ -7,7 +7,7 @@ import shutil
 
 app = Flask(__name__)
 
-app.secret_key = os.urandom(16)
+app.secret_key = os.environ["SECRET_KEY"]
 # Only accept files less than 10 MB
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 10
 app.config['UPLOAD_PATH'] = 'graphs'
