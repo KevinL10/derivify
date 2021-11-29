@@ -1,9 +1,10 @@
 # Derivify
 Calculates the derivative of a graph from a given image using [potrace](http://potrace.sourceforge.net/) and Bezier curves.
 
-# Usage
-`python3 main.py [filename]` produces a derivative graph for the specified file. Currently, only black and white images (PNG, JPG, BMP) are supported.
+Check it out [here](https://derivify.herokuapp.com/). **Note:** it may take a few moments to initially load the app due to Heroku's dyno sleeping.
 
+# Usage
+`python3 main.py [filename]` produces a (raw) derivative graph for the specified file, while `python3 smooth.py [filename]` smoothens out the resulting graph. Currently, only black and white images (PNG, JPG, BMP) are supported.
 
 ![Website Prototype](/examples/Derivify.gif)
 
@@ -19,6 +20,8 @@ See [examples](/examples).
 # Todo
 - [ ] Make the svg parser more robust
 - [x] Support PNG and JPG images
-- [ ] Smooth out the resulting derivative graph
+- [x] Smooth out the resulting derivative graph
 - [x] Create a simple website that runs Derivify on uploaded images
-- [ ] Host the flask app
+- [x] Host the flask app
+- [ ] Create a canvas for users to directly draw graphs
+- [ ] Substitute Bezier curves with polynomials using least squares
