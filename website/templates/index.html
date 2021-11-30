@@ -15,6 +15,8 @@
                 <br>
                 <button type="submit" class="btn btn-outline-primary mt-3">Derivify!</button>
             </form>
+            <canvas id="canvas" width="600" height="300" class="border mt-3"></canvas>
+            <script src="{{ url_for('static', filename='canvas.js') }}"></script>
         </div>
         {% for file in files %}
             <img src="{{ url_for('upload', filename=file) }}" style="width: 300px">
