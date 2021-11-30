@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <!-- Icon by Freepik https://www.flaticon.com/authors/freepik -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta charset="UTF-8">
@@ -21,6 +22,10 @@
         {% for file in files %}
             <img src="{{ url_for('upload', filename=file) }}" style="width: 300px">
         {% endfor %}
+
+        <footer class="footer text-muted mb-4">
+            <p>Made with ❤️ by <a href="https://github.com/KevinL10">vEvergarden</a>.</p>
+        </footer>
     </div>
 </body>
 </html>
