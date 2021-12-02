@@ -16,13 +16,13 @@
             <form action="/derivify" method="POST" enctype="multipart/form-data">
                 <input type="file" id="file" name="file" accept="*" />
                 <br>
-                <button type="submit" class="btn btn-outline-primary mt-3">Derivify!</button>
+                <button type="submit" class="btn btn-outline-primary mt-3">Upload</button>
             </form>
             <canvas id="canvas" width="600" height="300" class="border mt-3"></canvas>
             <script src="{{ url_for('static', filename='canvas.js') }}"></script>
             <br>
             <button id="clearCanvas" class="btn btn-outline-danger mt-3">Clear</button>
-            <button id="uploadCanvas" class="btn btn-outline-primary mt-3">Upload</button>
+            <button id="uploadCanvas" class="btn btn-outline-primary mt-3">Derivify!</button>
         </div>
         {% for file in files %}
             <img src="{{ url_for('upload', filename=file) }}" style="width: 300px">
