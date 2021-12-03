@@ -14,7 +14,6 @@ def deriv(input_file, output_file):
 	# Save the image as a .bmp file
 	Image.open(input_file).save(bmp_path)
 
-
 	res = os.system(f'potrace -b svg -a 200 {bmp_path} -o {svg_path}')
 	if res != 0:
 		return
