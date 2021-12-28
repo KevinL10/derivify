@@ -44,7 +44,7 @@ def bezier_slope(c, t):
 	res = yDeriv/xDeriv
 
 	# Unless it's an asymptote, you don't want giant spikes in the middle of your graph ...
-	if max(res) - min(res) > 20:
+	if max(res) - min(res) > 10:
 		raise ValueError
 
 	return res
