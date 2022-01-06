@@ -1,9 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, abort, send_from_directory, session
 from werkzeug.utils import secure_filename
-from main import deriv
+from scripts.bezier import derivify_bezier
 import os, shutil
 import shutil
-
 
 app = Flask(__name__)
 
@@ -36,14 +35,13 @@ def derivify():
         shutil.rmtree(user_path, ignore_errors=True)
         os.mkdir(user_path)
 
-        # For security, save the uploaded file with a different name
-        new_path = os.path.join(user_path, 'a_input.bmp')
+        # Files named upload.bmp and deriv.png
+        new_path = os.path.join(user_path, 'upload.bmp')
         input_file.save(new_path)
-        deriv(new_path, os.path.join(user_path, 'deriv.png'))
+        derivify_bezier(new_path, os.path.join(user_path, 'deriv.png'))
 
     return redirect(url_for('index'))
 
-
 @app.route('/uploads/<filename>')
-def upload(filename):
+def get_image(filename):
     return send_from_directory(os.path.join(app.config['UPLOAD_PATH'], session['user_id']), filename)

@@ -24,9 +24,9 @@
             <button id="clearCanvas" class="btn btn-outline-danger mt-3">Clear</button>
             <button id="uploadCanvas" class="btn btn-outline-primary mt-3">Derivify!</button>
         </div>
-        {% for file in files %}
-            <img src="{{ url_for('upload', filename=file) }}" style="width: 300px">
-        {% endfor %}
+
+        <img src="{{ url_for('get_image', filename='upload.bmp') }}" onerror="this.style.visibility = 'hidden'" style="width: 300px">
+        <img src="{{ url_for('get_image', filename='deriv.png') }}" onerror="this.style.visibility = 'hidden'" style="width: 300px">
 
         <footer class="footer text-muted mt-3 mb-4">
             <p>Made with ❤️ by <a href="https://github.com/KevinL10">vEvergarden</a>.</p>

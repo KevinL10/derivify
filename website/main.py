@@ -45,7 +45,7 @@ def deriv(input_file, output_file):
 
 	# Remove frame from matplotlib graph
 	ax = plt.gca()
-	ax.set_ylim([-5, 5])
+	ax.set_ylim([-5, 5 ])
 	ax.axis('off')
 	plt.savefig(output_file)
 
