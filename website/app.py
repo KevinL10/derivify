@@ -13,6 +13,10 @@ app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 10
 app.config['UPLOAD_PATH'] = 'graphs'
 
 @app.route('/')
+def derivify_redirect():
+    return redirect(url_for('index'))
+
+@app.route('/derivify', methods = ['GET'])
 def index():
     # Display user's graphs if they exist
     if 'user_id' in session and os.path.exists(os.path.join(app.config['UPLOAD_PATH'], session['user_id'])):
@@ -21,7 +25,6 @@ def index():
     session['user_id'] = os.urandom(16).hex()
     return render_template('index.html')
 
-    
 @app.route('/derivify', methods = ['POST'])
 def derivify():
     input_file = request.files['file']
