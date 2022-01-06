@@ -17,11 +17,10 @@ def derivify_redirect():
 
 @app.route('/derivify', methods = ['GET'])
 def index():
-    # Display user's graphs if they exist
-    if 'user_id' in session and os.path.exists(os.path.join(app.config['UPLOAD_PATH'], session['user_id'])):
-        return render_template('index.html', files=os.listdir(os.path.join(app.config['UPLOAD_PATH'], session['user_id'])))
+    # Give user a session id for their first visit
+    if 'user_id' not in session:
+        session['user_id'] = os.urandom(16).hex()
 
-    session['user_id'] = os.urandom(16).hex()
     return render_template('index.html')
 
 @app.route('/derivify', methods = ['POST'])
@@ -41,6 +40,12 @@ def derivify():
         derivify_bezier(new_path, os.path.join(user_path, 'deriv.png'))
 
     return redirect(url_for('index'))
+
+
+@app.route('/antiderivify', methods = ['GET'])
+def index_antiderivify():
+    return 'To be added'
+
 
 @app.route('/uploads/<filename>')
 def get_image(filename):
