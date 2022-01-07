@@ -1,10 +1,11 @@
 from PIL import Image
-from utils import *
+from .utils import *
 from numpy import polyfit
+import matplotlib.pyplot as plt
 import numpy as np
 
 WINDOW_NUM = 20
-MIN_WINDOW_SIZE = 25
+MIN_WINDOW_SIZE = 50
 POLY_DEGREE = 3
 
 # Takes in the image located at input_file and saves the derivative image at output_file
@@ -27,7 +28,14 @@ def derivify_least_squares(input_file, output_file):
 		for x in x_coordinates_sublist:
 			deriv_y_coordinates.append(evaluate_poly(deriv_coeffs, x))
 
+	deriv_x_coordinates = list(range(len(deriv_y_coordinates)))
+
+	# Save plotted figure to output file
+	plt.figure()
+	plot = plt.plot(deriv_x_coordinates, deriv_y_coordinates)
+	plt.show()
+	ax = plt.gca()
+	ax.axis("off")
+	plt.savefig(output_file)
+
 	return deriv_y_coordinates
-
-
-derivify_least_squares('test.png', 'out.png')

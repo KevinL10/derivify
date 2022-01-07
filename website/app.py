@@ -37,7 +37,7 @@ def derivify():
         # Files named upload.bmp and deriv.png
         new_path = os.path.join(user_path, 'upload.bmp')
         input_file.save(new_path)
-        derivify_bezier(new_path, os.path.join(user_path, 'deriv.png'))
+        derivify_least_squares(new_path, os.path.join(user_path, 'deriv.png'))
 
     return redirect(url_for('index'))
 
