@@ -1,9 +1,9 @@
 from PIL import Image
 from scipy.signal import savgol_filter
+from .utils import *
 import numpy as np
 import matplotlib.pyplot as plt
 import sys, os
-from utils import *
 
 np.seterr(divide="ignore", invalid="ignore")
 

@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, abort, send_from_directory, session
 from werkzeug.utils import secure_filename
 from scripts.bezier.derivify import derivify_bezier
+from scripts.leastsquares.derivify import derivify_least_squares
 import os, shutil
-import shutil
 
 app = Flask(__name__)
 
