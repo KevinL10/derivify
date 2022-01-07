@@ -1,8 +1,7 @@
 from math import sqrt
 
 # Convert a 2d array of RGB pixels to a list of y-coordinates for each x-coordinate
-def pixels_to_list(pixels, im_size):
-	width, height = im_size
+def pixels_to_list(pixels, width, height):
 	y_coordinates = []
 	# Average out the y-coordinates for each x-coordinate
 	for i in range(width):
@@ -19,3 +18,16 @@ def pixels_to_list(pixels, im_size):
 			y_coordinates.append(height - sum_of_y/total_y)
 
 	return y_coordinates
+
+# Return a list of coefficients for the derivative of the given polynomial
+def poly_derivative(coeffs):
+	poly_degree = len(coeffs) - 1
+	deriv_coeffs = []
+	for i in range(len(coeffs)):
+		deriv_coeffs.append(coeffs[i] * (poly_degree - i))
+
+	return deriv_coeffs
+
+# Return the value for f(x) given its coefficients and x
+def evaluate_poly(coeffs, x):
+	return sum([coeffs[i] * x ** (len(coeffs) - 1 - i) for i in range(len(coeffs))])
