@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, abort, send_from_directory, session
 from werkzeug.utils import secure_filename
-from scripts.bezier import derivify_bezier
+from scripts.bezier.derivify import derivify_bezier
 import os, shutil
 import shutil
 
