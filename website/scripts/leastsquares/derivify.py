@@ -1,5 +1,5 @@
 from PIL import Image
-from .utils import *
+from utils import *
 from numpy import polyfit
 import matplotlib.pyplot as plt
 import numpy as np
@@ -21,10 +21,9 @@ def derivify_least_squares(input_file, output_file):
 
 	for i in range(0, len(y_coordinates), window_size):
 		y_coordinates_sublist = y_coordinates[i:i + window_size]
-		x_coordinates_sublist = list(range(i, i + len(y_coordinates_sublist)))
-		best_fit_poly = polyfit(x_coordinates_sublist, y_coordinates_sublist, POLY_DEGREE)
-		deriv_coeffs = poly_derivative(best_fit_poly)
-
+		x_coordinates_sublist = list(range(len(y_coordinates_sublist)))
+		best_fit_coeffs = polyfit(x_coordinates_sublist, y_coordinates_sublist, POLY_DEGREE)
+		deriv_coeffs = poly_derivative(best_fit_coeffs)
 		for x in x_coordinates_sublist:
 			deriv_y_coordinates.append(evaluate_poly(deriv_coeffs, x))
 
@@ -39,3 +38,5 @@ def derivify_least_squares(input_file, output_file):
 	plt.savefig(output_file)
 
 	return deriv_y_coordinates
+
+derivify_least_squares('line.png', 'out.png')

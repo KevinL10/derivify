@@ -23,7 +23,7 @@ def pixels_to_list(pixels, width, height):
 def poly_derivative(coeffs):
 	poly_degree = len(coeffs) - 1
 	deriv_coeffs = []
-	for i in range(len(coeffs)):
+	for i in range(len(coeffs) - 1):
 		deriv_coeffs.append(coeffs[i] * (poly_degree - i))
 
 	return deriv_coeffs
