@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys, os
 
+CUTOFF = 5
 np.seterr(divide="ignore", invalid="ignore")
 
 # Takes in the image located at input_file and saves the derivative image at output_file
@@ -48,7 +49,7 @@ def derivify_bezier(input_file, output_file):
 
     # Remove frame from matplotlib graph
     ax = plt.gca()
-    ax.set_ylim([-5, 5])
+    ax.set_ylim([-CUTOFF, CUTOFF])
     ax.axis("off")
     plt.savefig(output_file)
 

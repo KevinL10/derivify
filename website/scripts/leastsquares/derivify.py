@@ -1,12 +1,13 @@
 from PIL import Image
-from utils import *
+from .utils import *
 from numpy import polyfit
 import matplotlib.pyplot as plt
 import numpy as np
 
-WINDOW_NUM = 20
-MIN_WINDOW_SIZE = 50
+WINDOW_NUM = 40
+MIN_WINDOW_SIZE = 25
 POLY_DEGREE = 3
+CUTOFF = 5
 
 # Takes in the image located at input_file and saves the derivative image at output_file
 def derivify_least_squares(input_file, output_file):
@@ -19,7 +20,7 @@ def derivify_least_squares(input_file, output_file):
 	# Break y_coordinates into WINDOW_NUM sublists and find the best fit polynomial for each
 	window_size = max(width // WINDOW_NUM, MIN_WINDOW_SIZE)
 
-	for i in range(0, len(y_coordinates), window_size):
+	for i in range(0, len(y_coordinates), window_size // 2):
 		y_coordinates_sublist = y_coordinates[i:i + window_size]
 		x_coordinates_sublist = list(range(len(y_coordinates_sublist)))
 		best_fit_coeffs = polyfit(x_coordinates_sublist, y_coordinates_sublist, POLY_DEGREE)
@@ -34,9 +35,7 @@ def derivify_least_squares(input_file, output_file):
 	plot = plt.plot(deriv_x_coordinates, deriv_y_coordinates)
 	plt.show()
 	ax = plt.gca()
+	ax.set_ylim([-CUTOFF, CUTOFF])
 	ax.axis("off")
 	plt.savefig(output_file)
-
 	return deriv_y_coordinates
-
-derivify_least_squares('line.png', 'out.png')
