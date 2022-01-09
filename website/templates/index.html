@@ -25,8 +25,13 @@
             <button id="uploadCanvas" class="btn btn-outline-primary mt-3">Derivify!</button>
         </div>
 
-        <img src="{{ url_for('get_image', filename='upload.bmp') }}" onerror="this.style.visibility = 'hidden'" style="width: 300px">
-        <img src="{{ url_for('get_image', filename='deriv.png') }}" onerror="this.style.visibility = 'hidden'" style="width: 300px">
+        <img src="{{ url_for('get_image', filename='user_image.png') }}" onerror="this.style.visibility = 'hidden'" style="width: 300px">
+
+        {% for file in files %}
+            {% if 'deriv' in file and '.png' in file %}
+                <img src="{{ url_for('get_image', filename=file) }}" onerror="this.style.visibility = 'hidden'" style="width: 300px">
+            {% endif %}
+        {% endfor %}
 
         <footer class="footer text-muted mt-3 mb-4">
             <p>Made with ❤️ by <a href="https://github.com/KevinL10">vEvergarden</a>.</p>
