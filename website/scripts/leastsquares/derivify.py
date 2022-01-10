@@ -23,6 +23,11 @@ def derivify_least_squares(input_file, output_file):
 	for i in range(0, len(y_coordinates), window_size // 2):
 		y_coordinates_sublist = y_coordinates[i:i + window_size]
 		x_coordinates_sublist = list(range(len(y_coordinates_sublist)))
+
+		# Prematurely exit if the final window is too small
+		if len(y_coordinates_sublist) < MIN_WINDOW_SIZE:
+			break
+
 		best_fit_coeffs = polyfit(x_coordinates_sublist, y_coordinates_sublist, POLY_DEGREE)
 		deriv_coeffs = poly_derivative(best_fit_coeffs)
 		for x in x_coordinates_sublist:
